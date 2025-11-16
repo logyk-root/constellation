@@ -6,7 +6,8 @@ frontend:
         - npm ci
     build:
       commands:
-        - npm run build --filter=@stellarloans/web
+        - cd apps/web
+        - npm run build
   artifacts:
     baseDirectory: apps/web
     files:
@@ -14,5 +15,4 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
-      - apps/web/node_modules/**/*
       - apps/web/.next/cache/**/*
