@@ -1,119 +1,106 @@
+'use client'
+
+import { motion } from 'framer-motion'
+
 export function HowItWorks() {
   const steps = [
     {
-      number: '1',
-      title: 'Apply in 3 Minutes',
-      description:
-        'Fill out our quick online form. No credit impact, no obligation. Our AI analyzes your situation instantly.',
-      icon: (
-        <svg
-          className="h-8 w-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-          />
-        </svg>
-      ),
+      number: '01',
+      title: 'Apply',
+      description: '3 minutes. No credit impact.',
     },
     {
-      number: '2',
-      title: 'Get Matched to Lenders',
-      description:
-        'Our AI shops your application to 15+ Texas lenders. See multiple rate offers from top lenders - all in one place.',
-      icon: (
-        <svg
-          className="h-8 w-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-          />
-        </svg>
-      ),
+      number: '02',
+      title: 'Get Matched',
+      description: '15+ lenders compete for you.',
     },
     {
-      number: '3',
-      title: 'Choose Your Best Rate',
-      description:
-        'Compare offers and choose the one that saves you the most. Close your loan with the lender - completely free!',
-      icon: (
-        <svg
-          className="h-8 w-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
-      ),
+      number: '03',
+      title: 'Save Money',
+      description: 'Choose your best rate. Free.',
     },
   ]
 
   return (
-    <section id="how-it-works" className="bg-gray-50 py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="how-it-works" className="relative bg-black py-32">
+      <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
+        <div className="mb-20 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-4 text-5xl font-bold text-white sm:text-6xl"
+          >
             How It Works
-          </h2>
-          <p className="mx-auto max-w-2xl text-xl text-gray-600">
-            Get matched to the best auto loan rates in Texas - fast, free, and
-            easy.
-          </p>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-xl text-white/50"
+          >
+            Three simple steps to lower your payment
+          </motion.p>
         </div>
 
-        {/* Steps */}
-        <div className="grid gap-12 md:grid-cols-3">
-          {steps.map((step) => (
-            <div key={step.number} className="relative">
-              {/* Step Number Badge */}
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-2xl font-bold text-white">
+        {/* Steps Grid */}
+        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl transition-all hover:border-white/20 hover:bg-white/10"
+            >
+              {/* Step Number */}
+              <div className="mb-6 text-6xl font-bold text-white/10">
                 {step.number}
               </div>
 
-              {/* Icon */}
-              <div className="mb-4 text-blue-600">{step.icon}</div>
-
               {/* Content */}
-              <h3 className="mb-3 text-2xl font-bold text-gray-900">
+              <h3 className="mb-3 text-2xl font-bold text-white">
                 {step.title}
               </h3>
-              <p className="text-gray-600">{step.description}</p>
+              <p className="text-white/60">{step.description}</p>
 
-              {/* Connector Line (except last item) */}
-              {step.number !== '3' && (
-                <div className="absolute right-0 top-8 hidden h-0.5 w-full bg-blue-200 md:block"></div>
-              )}
-            </div>
+              {/* Hover gradient effect */}
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-600/20 to-cyan-600/20 opacity-0 transition-opacity group-hover:opacity-100" />
+            </motion.div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="mt-16 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          className="mt-16 text-center"
+        >
           <a
             href="/apply"
-            className="inline-block rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl"
+            className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-5 text-lg font-semibold text-black transition-all hover:scale-105 hover:shadow-2xl hover:shadow-white/20"
           >
-            Start Saving Money Today
+            Get Started
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

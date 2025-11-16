@@ -1,171 +1,123 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 export function SavingsCalculator() {
-  const [loanBalance, setLoanBalance] = useState(25000)
   const [currentRate, setCurrentRate] = useState(8.5)
   const [currentPayment, setCurrentPayment] = useState(450)
 
-  // Simple calculation (you'll make this more sophisticated later)
   const estimatedNewRate = Math.max(4.5, currentRate - 2.5)
   const estimatedNewPayment = Math.round(currentPayment * 0.7)
   const monthlySavings = currentPayment - estimatedNewPayment
-  const yearlySavings = monthlySavings * 12
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 to-white py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          {/* Section Header */}
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
-              See Your Potential Savings
-            </h2>
-            <p className="text-xl text-gray-600">
-              Enter your current loan details to estimate how much you could
-              save.
-            </p>
-          </div>
-
-          <div className="grid gap-8 lg:grid-cols-2">
-            {/* Input Side */}
-            <div className="rounded-2xl bg-white p-8 shadow-lg">
-              <h3 className="mb-6 text-2xl font-bold text-gray-900">
-                Your Current Loan
-              </h3>
-
-              {/* Loan Balance */}
-              <div className="mb-6">
-                <label className="mb-2 block text-sm font-semibold text-gray-700">
-                  Current Loan Balance
-                </label>
-                <div className="relative">
-                  <span className="absolute left-4 top-3 text-gray-500">$</span>
-                  <input
-                    type="number"
-                    value={loanBalance}
-                    onChange={(e) =>
-                      setLoanBalance(Number(e.target.value))
-                    }
-                    className="w-full rounded-lg border-2 border-gray-200 py-3 pl-8 pr-4 text-lg focus:border-blue-500 focus:outline-none"
-                    placeholder="25000"
-                  />
-                </div>
-                <input
-                  type="range"
-                  min="5000"
-                  max="75000"
-                  step="1000"
-                  value={loanBalance}
-                  onChange={(e) => setLoanBalance(Number(e.target.value))}
-                  className="mt-3 w-full"
-                />
-              </div>
-
-              {/* Current Interest Rate */}
-              <div className="mb-6">
-                <label className="mb-2 block text-sm font-semibold text-gray-700">
-                  Current Interest Rate
-                </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    value={currentRate}
-                    onChange={(e) => setCurrentRate(Number(e.target.value))}
-                    className="w-full rounded-lg border-2 border-gray-200 py-3 pl-4 pr-10 text-lg focus:border-blue-500 focus:outline-none"
-                    placeholder="8.5"
-                    step="0.1"
-                  />
-                  <span className="absolute right-4 top-3 text-gray-500">
-                    %
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="3"
-                  max="25"
-                  step="0.5"
-                  value={currentRate}
-                  onChange={(e) => setCurrentRate(Number(e.target.value))}
-                  className="mt-3 w-full"
-                />
-              </div>
-
-              {/* Current Monthly Payment */}
-              <div className="mb-6">
-                <label className="mb-2 block text-sm font-semibold text-gray-700">
-                  Current Monthly Payment
-                </label>
-                <div className="relative">
-                  <span className="absolute left-4 top-3 text-gray-500">$</span>
-                  <input
-                    type="number"
-                    value={currentPayment}
-                    onChange={(e) =>
-                      setCurrentPayment(Number(e.target.value))
-                    }
-                    className="w-full rounded-lg border-2 border-gray-200 py-3 pl-8 pr-4 text-lg focus:border-blue-500 focus:outline-none"
-                    placeholder="450"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Results Side */}
-            <div className="flex flex-col justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 p-8 text-white shadow-xl">
-              <h3 className="mb-6 text-2xl font-bold">Your Estimated Savings</h3>
-
-              <div className="mb-8 space-y-6">
-                <div className="border-b border-blue-400 pb-4">
-                  <div className="text-sm text-blue-100">Estimated New Rate</div>
-                  <div className="text-4xl font-bold">
-                    {estimatedNewRate.toFixed(1)}%
-                  </div>
-                  <div className="text-sm text-blue-100">
-                    vs. {currentRate}% current
-                  </div>
-                </div>
-
-                <div className="border-b border-blue-400 pb-4">
-                  <div className="text-sm text-blue-100">
-                    Estimated New Payment
-                  </div>
-                  <div className="text-4xl font-bold">
-                    ${estimatedNewPayment}/mo
-                  </div>
-                  <div className="text-sm text-blue-100">
-                    vs. ${currentPayment}/mo current
-                  </div>
-                </div>
-
-                <div className="rounded-lg bg-white bg-opacity-20 p-4">
-                  <div className="mb-2 text-sm text-blue-100">
-                    You Could Save
-                  </div>
-                  <div className="text-5xl font-bold">
-                    ${monthlySavings}
-                  </div>
-                  <div className="text-xl text-blue-100">per month</div>
-                  <div className="mt-2 text-sm text-blue-100">
-                    ${yearlySavings.toLocaleString()} per year
-                  </div>
-                </div>
-              </div>
-
-              <a
-                href="/apply"
-                className="block rounded-lg bg-white py-4 text-center text-lg font-bold text-blue-600 shadow-lg transition-all hover:bg-gray-50"
-              >
-                Check My Actual Rate - Free
-              </a>
-
-              <p className="mt-4 text-center text-sm text-blue-100">
-                💡 This is an estimate. Your actual rate may vary.
-              </p>
-            </div>
-          </div>
+    <section className="relative bg-black py-32">
+      <div className="container mx-auto px-6">
+        {/* Section Header */}
+        <div className="mb-20 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-4 text-5xl font-bold text-white sm:text-6xl"
+          >
+            Calculate Your Savings
+          </motion.h2>
         </div>
+
+        {/* Calculator Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-2xl rounded-3xl border border-white/10 bg-white/5 p-12 backdrop-blur-xl"
+        >
+          {/* Inputs */}
+          <div className="mb-12 space-y-8">
+            {/* Current Rate */}
+            <div>
+              <label className="mb-3 block text-sm font-medium text-white/60">
+                Current Interest Rate
+              </label>
+              <div className="flex items-baseline gap-2">
+                <span className="text-6xl font-bold text-white">
+                  {currentRate.toFixed(1)}
+                </span>
+                <span className="text-2xl text-white/40">%</span>
+              </div>
+              <input
+                type="range"
+                min="3"
+                max="25"
+                step="0.5"
+                value={currentRate}
+                onChange={(e) => setCurrentRate(Number(e.target.value))}
+                className="mt-6 w-full accent-blue-500"
+              />
+            </div>
+
+            {/* Current Payment */}
+            <div>
+              <label className="mb-3 block text-sm font-medium text-white/60">
+                Current Monthly Payment
+              </label>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl text-white/40">$</span>
+                <span className="text-6xl font-bold text-white">
+                  {currentPayment}
+                </span>
+              </div>
+              <input
+                type="range"
+                min="200"
+                max="1500"
+                step="50"
+                value={currentPayment}
+                onChange={(e) => setCurrentPayment(Number(e.target.value))}
+                className="mt-6 w-full accent-blue-500"
+              />
+            </div>
+          </div>
+
+          {/* Results */}
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-8">
+            <div className="mb-2 text-sm text-white/50">
+              Estimated Monthly Savings
+            </div>
+            <div className="mb-6 flex items-baseline gap-2">
+              <span className="text-2xl text-white/40">$</span>
+              <span className="text-7xl font-bold text-white">
+                {monthlySavings}
+              </span>
+            </div>
+            <div className="mb-8 flex items-center justify-between text-sm">
+              <div>
+                <div className="text-white/40">New Rate</div>
+                <div className="text-xl font-bold text-white">
+                  {estimatedNewRate.toFixed(1)}%
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-white/40">New Payment</div>
+                <div className="text-xl font-bold text-white">
+                  ${estimatedNewPayment}/mo
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="/apply"
+              className="block rounded-full bg-white px-8 py-5 text-center text-lg font-semibold text-black transition-all hover:scale-105 hover:shadow-2xl hover:shadow-white/20"
+            >
+              Check My Actual Rate
+            </a>
+          </div>
+
+          <p className="mt-6 text-center text-sm text-white/40">
+            Estimates based on average savings. Actual rates may vary.
+          </p>
+        </motion.div>
       </div>
     </section>
   )
