@@ -5,17 +5,15 @@ applications:
       phases:
         preBuild:
           commands:
-            - cd ../..
-            - npm ci
+            - npm --prefix ../.. ci
         build:
           commands:
-            - cd ../..
-            - npm run build --filter=@stellarloans/web
+            - npm --prefix ../.. run build --filter=@stellarloans/web
       artifacts:
         baseDirectory: .next
         files:
           - '**/*'
       cache:
         paths:
-          - node_modules/**/*
+          - ../../node_modules/**/*
           - .next/cache/**/*
