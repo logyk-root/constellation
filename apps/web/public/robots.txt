@@ -1,0 +1,6 @@
+# robots.txt for stellarloans.io
+
+User-agent: *
+Allow: /
+
+Sitemap: https://stellarloans.io/sitemap.xml

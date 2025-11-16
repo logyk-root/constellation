@@ -1,6 +1,8 @@
-# Constellation
+# Stellar Loans (stellarloans.io)
 
 AI-powered auto loan refinancing platform for Texas.
+
+**Project codename:** Constellation
 
 ## Project Structure
 

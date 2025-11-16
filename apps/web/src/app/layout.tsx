@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'Constellation | Auto Loan Refinancing in Texas',
+  title: 'Stellar Loans | Auto Loan Refinancing in Texas',
   description:
     'AI-powered auto loan refinancing with transparent pricing. Save money on your car loan with no hidden fees. Serving Texas.',
   keywords: [
@@ -14,7 +14,24 @@ export const metadata: Metadata = {
     'Texas auto loans',
     'refinance car',
     'lower car payment',
+    'stellar loans',
   ],
+  metadataBase: new URL('https://stellarloans.io'),
+  openGraph: {
+    title: 'Stellar Loans | Auto Loan Refinancing in Texas',
+    description:
+      'AI-powered auto loan refinancing with transparent pricing. No hidden fees.',
+    url: 'https://stellarloans.io',
+    siteName: 'Stellar Loans',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Stellar Loans | Auto Loan Refinancing in Texas',
+    description:
+      'AI-powered auto loan refinancing with transparent pricing. No hidden fees.',
+  },
 }
 
 export default function RootLayout({

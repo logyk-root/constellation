@@ -3,7 +3,7 @@ export default function HomePage() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white p-24">
       <div className="max-w-5xl text-center">
         <h1 className="mb-6 text-6xl font-bold tracking-tight text-gray-900">
-          Constellation
+          Stellar Loans
         </h1>
         <p className="mb-4 text-2xl font-light text-gray-600">
           AI-Powered Auto Loan Refinancing
@@ -21,6 +21,9 @@ export default function HomePage() {
         </div>
         <p className="mt-12 text-sm text-gray-400">
           🚧 Coming Soon - Platform in Development
+        </p>
+        <p className="mt-4 text-xs text-gray-300">
+          stellarloans.io | stellarloans.net
         </p>
       </div>
     </main>
