@@ -7,16 +7,10 @@ frontend:
     build:
       commands:
         - npm run build --filter=@stellarloans/web
-        - cp -r apps/web/.next/standalone/apps/web apps/web/.next/standalone/app || true
-        - cp -r apps/web/.next/static apps/web/.next/standalone/.next/ || true
-        - cp -r apps/web/public apps/web/.next/standalone/ || true
   artifacts:
-    baseDirectory: apps/web
+    baseDirectory: apps/web/out
     files:
-      - .next/**/*
-      - public/**/*
-      - package.json
-      - next.config.js
+      - '**/*'
   cache:
     paths:
       - node_modules/**/*
