@@ -1,18 +1,21 @@
 version: 1
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - npm ci
-    build:
-      commands:
-        - cd apps/web
-        - npm run build
-  artifacts:
-    baseDirectory: apps/web
-    files:
-      - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
-      - apps/web/.next/cache/**/*
+applications:
+  - appRoot: apps/web
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - cd ../..
+            - npm ci
+        build:
+          commands:
+            - cd ../..
+            - npm run build --filter=@stellarloans/web
+      artifacts:
+        baseDirectory: .next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+          - .next/cache/**/*
